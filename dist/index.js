@@ -6969,6 +6969,7 @@ exports["default"] = _default;
 
 const core = __nccwpck_require__(2186)
 const fs = __nccwpck_require__(7147)
+const path = __nccwpck_require__(1017)
 const fetch = __nccwpck_require__(4429)
 
 // Function to find the first .zip file in the directory
