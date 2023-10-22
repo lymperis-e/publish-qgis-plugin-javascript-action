@@ -2,6 +2,17 @@ const core = require('@actions/core')
 const fs = require('fs')
 const fetch = require('node-fetch')
 
+// Function to find the first .zip file in the directory
+function findZipFile(directory) {
+  const files = fs.readdirSync(directory)
+  for (const file of files) {
+    if (file.endsWith('.zip')) {
+      return path.join(directory, file)
+    }
+  }
+  return null // Return null if no .zip file is found
+}
+
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
@@ -9,17 +20,22 @@ const fetch = require('node-fetch')
 async function run() {
   try {
     // Get the values from repository secrets
-    const osgioId = core.getInput('osgeo-id')
-    const osgioPassword = core.getInput('osgeo-password')
+    const osgeoId = core.getInput('osgeo-id')
+    const osgeoPassword = core.getInput('osgeo-password')
 
     // Path to the release .zip file configured in the Action's input
-    const releaseZipPath = core.getInput('release-zip-path')
+    const releaseZipDirectory = core.getInput('release-zip-path')
 
     // Read the release .zip file
-    const releaseZip = fs.createReadStream(releaseZipPath)
+    const firstZipFile = findZipFile(releaseZipDirectory)
+    if (!firstZipFile) {
+      core.error('No .zip file found in the specified directory.')
+      core.setFailed('Release upload failed. No release .zip found')
+    }
+    const releaseZip = fs.createReadStream(firstZipFile)
 
     // Authenticate with the QGIS Plugin Repository
-    const auth = `Basic ${Buffer.from(`${osgioId}:${osgioPassword}`).toString(
+    const auth = `Basic ${Buffer.from(`${osgeoId}:${osgeoPassword}`).toString(
       'base64'
     )}`
 
