@@ -33,7 +33,8 @@
     "package:watch": "npm run package -- --watch",
     "test": "(jest && make-coverage-badge --output-path ./badges/coverage.svg) || make-coverage-badge --output-path ./badges/coverage.svg",
     "all": "npm run format:write && npm run lint && npm run test && npm run package",
-    "release": "npm run bundle &&   git tag -a -m 'Release' v1.5 && git push --follow-tags"
+    "commit": "git add -A && git commit -m 'releasing' && git push",
+    "release": "npm run bundle && npm run commit && git tag -a -m 'Release' v1.5 && git push --follow-tags"
   },
   "license": "MIT",
   "eslintConfig": {
