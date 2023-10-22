@@ -18,7 +18,7 @@ inputs:
 
 # Define your outputs here.
 outputs:
-  success:
+  publsihed-url:
     description: 'Plugin url'
 
 runs:

@@ -54,7 +54,7 @@ async function run() {
 
     if (uploadResponse.status === 200) {
       core.debug('Release .zip file uploaded successfully.')
-      core.setOutput('success', 'https://plugins.qgis.org/plugins/')
+      core.setOutput('published-url', 'https://plugins.qgis.org/plugins/')
     } else {
       core.error('Failed to upload the release .zip file.')
       core.error(await uploadResponse.text())
