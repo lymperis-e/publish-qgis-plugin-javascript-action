@@ -1,18 +1,17 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'QGIS Plugin Upload'
+description: 'Uploads a release .zip fiel to the QGIS plugin repository'
+author: 'Efstathios Lymperis'
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  release-zip-path:
+    description: 'Repository path to the release .zip file'
     required: true
-    default: '1000'
 
 # Define your outputs here.
 outputs:
-  time:
-    description: 'Your output description here'
+  success:
+    description: 'Plugin url'
 
 runs:
   using: node20
