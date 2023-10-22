@@ -8,6 +8,14 @@ inputs:
     description: 'Repository path to the release .zip file'
     required: true
 
+  osgeo-id:
+    description: 'OSGeo user ID'
+    required: true
+
+  osgeo-password:
+    description: 'OSGeo password'
+    required: true
+
 # Define your outputs here.
 outputs:
   success:

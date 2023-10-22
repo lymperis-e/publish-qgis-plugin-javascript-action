@@ -9,8 +9,8 @@ const fetch = require('node-fetch')
 async function run() {
   try {
     // Get the values from repository secrets
-    const osgioId = core.getInput('OSGEO_ID')
-    const osgioPassword = core.getInput('OSGEO_PASSWORD')
+    const osgioId = core.getInput('osgeo-id')
+    const osgioPassword = core.getInput('osgeo-password')
 
     // Path to the release .zip file configured in the Action's input
     const releaseZipPath = core.getInput('release-zip-path')
